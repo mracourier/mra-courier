@@ -318,7 +318,7 @@ I would like to book a shipment.`);
   Icon: Clock3,
   title: "Quick Coordination",
   description: "Simple booking"
-}            ].map(([Icon, title, desc]) => (
+}            ].map(([Icon, title, desc]: [React.ElementType, string, string]) => (
               <div key={title} className="rounded-3xl border bg-white p-6">
                 <div className="mb-4 inline-flex rounded-2xl bg-blue-100 p-3 text-blue-900">
                   {React.createElement(Icon as React.ElementType, { size: 22 })}
