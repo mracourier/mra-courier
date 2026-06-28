@@ -292,7 +292,7 @@ I would like to book a shipment.`);
             <p className="mt-3 text-slate-600">Practical shipping support for personal and business needs.</p>
           </div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {services.map(({ Icon, title, description }) => (
+            {services.map(({ icon: Icon, title, description }) => (
               <div key={title} className="rounded-3xl border bg-slate-50 p-6 shadow-sm">
                 <div className="mb-4 inline-flex rounded-2xl bg-blue-100 p-3 text-blue-900">
                   <Icon size={22} />
