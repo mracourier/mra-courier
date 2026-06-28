@@ -298,7 +298,7 @@ I would like to book a shipment.`);
                   <Icon size={22} />
                 </div>
                 <h3 className="text-xl font-bold text-blue-950">{title}</h3>
-                <p className="mt-3 text-slate-600">{desc}</p>
+                <p className="mt-3 text-slate-600">{description}</p>
               </div>
             ))}
           </div>
@@ -324,7 +324,7 @@ I would like to book a shipment.`);
                   {React.createElement(Icon as React.ElementType, { size: 22 })}
                 </div>
                 <h3 className="text-xl font-bold text-blue-950">{title}</h3>
-                <p className="mt-3 text-slate-600">{desc}</p>
+                <p className="mt-3 text-slate-600">{description}</p>
               </div>
             ))}
           </div>
