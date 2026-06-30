@@ -314,17 +314,14 @@ I would like to book a shipment.`);
             {[
               [Package, "Safe Handling", "Careful support for documents and parcels."],
               [ShieldCheck, "Reliable Support", "Helpful communication and booking assistance."],
-{
-  Icon: Clock3,
-  title: "Quick Coordination",
-  description: "Simple booking"
-}            ].map(([Icon, title, desc]: [React.ElementType, string, string]) => (
+              [Clock3, "Quick Coordination", "Simple booking"]   
+    ].map(([Icon, title, desc]: [React.ElementType, string, string]) => (
               <div key={title} className="rounded-3xl border bg-white p-6">
                 <div className="mb-4 inline-flex rounded-2xl bg-blue-100 p-3 text-blue-900">
                   {React.createElement(Icon as React.ElementType, { size: 22 })}
                 </div>
                 <h3 className="text-xl font-bold text-blue-950">{title}</h3>
-                <p className="mt-3 text-slate-600">{description}</p>
+                <p className="mt-3 text-slate-600">{desc}</p>
               </div>
             ))}
           </div>
