@@ -1,484 +1,486 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2868
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+"use client";
 
-\f0\fs24 \cf0 import React, \{ useMemo, useState \} from "react";\
-import \{\
-  Menu,\
-  X,\
-  Phone,\
-  Mail,\
-  Globe,\
-  MapPin,\
-  MessageCircle,\
-  Package,\
-  ShieldCheck,\
-  Clock3,\
-  Plane,\
-  Truck,\
-  Box,\
-  ArrowRight,\
-  Send,\
-\} from "lucide-react";\
-\
-/* ---------------------------\
-   FINAL LOGO \'97 OPTION 3\
----------------------------- */\
-\
-function MRAIcon(\{ dark = false, small = false \}: \{ dark?: boolean; small?: boolean \}) \{\
-  const size = small ? "h-10 w-10" : "h-16 w-16";\
-  const iconSize = small ? 18 : 24;\
-  const sendSize = small ? 12 : 15;\
-\
-  return (\
-    <div\
-      className=\{`relative flex $\{size\} items-center justify-center overflow-hidden rounded-full $\{\
-        dark\
-          ? "bg-white/10 border border-white/15"\
-          : "bg-gradient-to-br from-sky-500 to-blue-900"\
-      \} shadow-xl`\}\
-    >\
-      <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.25),transparent_38%)]" />\
-      <Box className="text-white" size=\{iconSize\} strokeWidth=\{2.2\} />\
-      <div className="absolute right-[18%] top-[18%] text-white">\
-        <Send size=\{sendSize\} strokeWidth=\{2.7\} />\
-      </div>\
-    </div>\
-  );\
-\}\
-\
-function MRALogo(\{ dark = false, compact = false \}: \{ dark?: boolean; compact?: boolean \}) \{\
-  return (\
-    <div className="flex items-center gap-3">\
-      <MRAIcon dark=\{dark\} small=\{compact\} />\
-      <div>\
-        <div className=\{`flex items-center gap-2 $\{dark ? "text-white" : "text-blue-950"\}`\}>\
-          <span className=\{`$\{compact ? "text-2xl" : "text-4xl"\} font-black leading-none tracking-tight`\}>\
-            MRA\
-          </span>\
-          <span\
-            className=\{`rounded-full px-3 py-1 $\{compact ? "text-xs" : "text-sm"\} font-bold tracking-[0.18em] $\{\
-              dark ? "bg-white/15 text-white" : "bg-blue-100 text-blue-900"\
-            \}`\}\
-          >\
-            COURIER\
-          </span>\
-        </div>\
-\
-        <p\
-          className=\{`$\{compact ? "text-[11px]" : "text-sm"\} mt-2 $\{\
-            dark ? "text-blue-100" : "text-slate-600"\
-          \}`\}\
-        >\
-          Domestic & International Courier Services\
-        </p>\
-      </div>\
-    </div>\
-  );\
-\}\
-\
-export default function MRACourierHomePage() \{\
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);\
-  const [form, setForm] = useState(\{\
-    name: "",\
-    phone: "",\
-    service: "",\
-    message: "",\
-  \});\
-\
-  const businessPhone = "+91 741 678 0445";\
-  const whatsappNumber = "917416780445";\
-  const businessEmail = "mracourier@gmail.com";\
-  const website = "mracourier.com";\
-  const address = "Al Shukoor Colony, Shamshabad, Hyderabad, Telangana 501218";\
-  const mapsUrl = "https://maps.google.com/?q=Al+Shukoor+Colony+Shamshabad+Hyderabad+501218";\
-\
-  const whatsappMessage = useMemo(() => \{\
-    return encodeURIComponent(`Hello MRA Courier,\
-\
-Name: $\{form.name || "-"\}\
-Phone: $\{form.phone || "-"\}\
-Service: $\{form.service || "-"\}\
-Message: $\{form.message || "-"\}\
-\
-I would like to book a shipment.`);\
-  \}, [form]);\
-\
-  const whatsappUrl = useMemo(() => \{\
-    return `https://wa.me/$\{whatsappNumber\}?text=$\{whatsappMessage\}`;\
-  \}, [whatsappNumber, whatsappMessage]);\
-\
-  const services = [\
-    [Truck, "Domestic Courier", "Quick and secure delivery across India."],\
-    [Plane, "International Courier", "Ship documents and parcels overseas with ease."],\
-    [Clock3, "Free Pickup", "Convenient pickup service for your shipments."],\
-    [Box, "Packing Support", "Proper packaging assistance for safer transit."],\
-  ] as const;\
-\
-  const whyUs: [React.ElementType, string, string][] = [
-  [Package, "Safe Handling", "Careful support for documents and parcels."],
-  [ShieldCheck, "Reliable Support", "Helpful communication and booking assistance."],
-  [Clock3, "Quick Coordination", "Simple booking and practical shipment guidance."],
-];
+import React, { useMemo, useState } from "react";
+import {
+  ArrowRight,
+  Box,
+  Clock3,
+  ExternalLink,
+  Globe,
+  Mail,
+  MapPin,
+  Menu,
+  MessageCircle,
+  Package,
+  Phone,
+  Plane,
+  Search,
+  Send,
+  ShieldCheck,
+  Truck,
+  X,
+} from "lucide-react";
 
-  const faqs: [string, string][] = [\
-    [\
-      "Do you provide international courier?",\
-      "Yes, we support international parcel and document shipping assistance.",\
-    ],\
-    [\
-      "Do you offer pickup?",\
-      "Yes, free pickup is available depending on shipment location and service requirements.",\
-    ],\
-    [\
-      "Can I book through WhatsApp?",\
-      "Yes, you can contact MRA Courier directly on WhatsApp for booking and inquiry.",\
-    ],\
-  ];\
-\
-  return (\
-    <div className="min-h-screen bg-white text-slate-900">\
-      \{/* HEADER */\}\
-      <header className="sticky top-0 z-50 border-b bg-white/95 backdrop-blur">\
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">\
-          <MRALogo compact />\
-\
-          <nav className="hidden gap-6 text-sm font-medium md:flex">\
-            <a href="#home" className="hover:text-blue-700">Home</a>\
-            <a href="#about" className="hover:text-blue-700">About</a>\
-            <a href="#services" className="hover:text-blue-700">Services</a>\
-            <a href="#why-us" className="hover:text-blue-700">Why Us</a>\
-            <a href="#faq" className="hover:text-blue-700">FAQ</a>\
-            <a href="#contact" className="hover:text-blue-700">Contact</a>\
-          </nav>\
-\
-          <div className="hidden md:block">\
-            <a\
-              href=\{whatsappUrl\}\
-              target="_blank"\
-              rel="noreferrer"\
-              className="rounded-2xl bg-blue-900 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-800"\
-            >\
-              WhatsApp Us\
-            </a>\
-          </div>\
-\
-          <button className="md:hidden" onClick=\{() => setMobileMenuOpen(!mobileMenuOpen)\}>\
-            \{mobileMenuOpen ? <X /> : <Menu />\}\
-          </button>\
-        </div>\
-\
-        \{mobileMenuOpen && (\
-          <div className="border-t bg-white px-6 py-4 md:hidden">\
-            <div className="flex flex-col gap-4 text-sm font-medium">\
-              <a href="#home" onClick=\{() => setMobileMenuOpen(false)\}>Home</a>\
-              <a href="#about" onClick=\{() => setMobileMenuOpen(false)\}>About</a>\
-              <a href="#services" onClick=\{() => setMobileMenuOpen(false)\}>Services</a>\
-              <a href="#why-us" onClick=\{() => setMobileMenuOpen(false)\}>Why Us</a>\
-              <a href="#faq" onClick=\{() => setMobileMenuOpen(false)\}>FAQ</a>\
-              <a href="#contact" onClick=\{() => setMobileMenuOpen(false)\}>Contact</a>\
-              <a\
-                href=\{whatsappUrl\}\
-                target="_blank"\
-                rel="noreferrer"\
-                className="rounded-2xl bg-blue-900 px-5 py-3 text-center text-white"\
-              >\
-                WhatsApp Us\
-              </a>\
-            </div>\
-          </div>\
-        )\}\
-      </header>\
-\
-      \{/* HERO */\}\
-      <section id="home" className="bg-gradient-to-br from-blue-950 via-blue-900 to-blue-700 text-white">\
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:grid-cols-2 md:items-center">\
-          <div>\
-            <div className="mb-5">\
-              <MRALogo dark />\
-            </div>\
-\
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-blue-100">\
-              Modern Courier Minimal\
-            </div>\
-\
-            <p className="mb-3 inline-block rounded-full border border-white/20 bg-white/10 px-4 py-1 text-sm">\
-              Trusted Courier Partner in Hyderabad\
-            </p>\
-\
-            <h1 className="mt-4 text-4xl font-extrabold leading-tight md:text-5xl">\
-              Fast, Reliable Domestic & International Courier Solutions\
-            </h1>\
-\
-            <p className="mt-5 max-w-xl text-lg text-blue-100">\
-              From important documents to parcels, MRA Courier helps you ship confidently with easy support,\
-              pickup options, and customer-friendly service.\
-            </p>\
-\
-            <div className="mt-8 flex flex-wrap gap-4">\
-              <a\
-                href=\{whatsappUrl\}\
-                target="_blank"\
-                rel="noreferrer"\
-                className="inline-flex items-center gap-2 rounded-2xl bg-white px-8 py-3 font-semibold text-blue-900 shadow-lg hover:bg-blue-50"\
-              >\
-                Book Shipment Now <ArrowRight size=\{18\} />\
-              </a>\
-              <a\
-                href="#contact"\
-                className="rounded-2xl border border-white/25 px-8 py-3 font-semibold text-white hover:bg-white/10"\
-              >\
-                Get Free Quote\
-              </a>\
-            </div>\
-          </div>\
-\
-          <div className="rounded-3xl border border-white/10 bg-white/10 p-8 shadow-2xl backdrop-blur">\
-            <h3 className="text-2xl font-bold">Book Your Shipment</h3>\
-            <p className="mt-2 text-blue-100">Share your details and continue on WhatsApp instantly.</p>\
-\
-            <div className="mt-6 grid gap-4">\
-              <input\
-                value=\{form.name\}\
-                onChange=\{(e) => setForm(\{ ...form, name: e.target.value \})\}\
-                placeholder="Your Name"\
-                className="rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-blue-100 outline-none"\
-              />\
-              <input\
-                value=\{form.phone\}\
-                onChange=\{(e) => setForm(\{ ...form, phone: e.target.value \})\}\
-                placeholder="Phone Number"\
-                className="rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-blue-100 outline-none"\
-              />\
-              <input\
-                value=\{form.service\}\
-                onChange=\{(e) => setForm(\{ ...form, service: e.target.value \})\}\
-                placeholder="Service Needed"\
-                className="rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-blue-100 outline-none"\
-              />\
-              <textarea\
-                value=\{form.message\}\
-                onChange=\{(e) => setForm(\{ ...form, message: e.target.value \})\}\
-                placeholder="Message"\
-                rows=\{4\}\
-                className="rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-white placeholder:text-blue-100 outline-none"\
-              />\
-              <a\
-                href=\{whatsappUrl\}\
-                target="_blank"\
-                rel="noreferrer"\
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-6 py-3 font-semibold text-blue-900 hover:bg-blue-50"\
-              >\
-                <MessageCircle size=\{18\} /> Send via WhatsApp\
-              </a>\
-            </div>\
-          </div>\
-        </div>\
-      </section>\
-\
-      <section className="border-b bg-white py-14">\
-        <div className="mx-auto max-w-7xl px-6">\
-          <div className="grid gap-6 md:grid-cols-3">\
-            <div className="rounded-3xl border bg-slate-50 p-6">\
-              <h4 className="text-lg font-bold text-blue-900">Company Profile</h4>\
-              <p className="mt-3 text-slate-600">\
-                A dependable courier brand focused on local convenience and international reach.\
-              </p>\
-            </div>\
-            <div className="rounded-3xl border bg-slate-50 p-6">\
-              <h4 className="text-lg font-bold text-blue-900">Business Support</h4>\
-              <p className="mt-3 text-slate-600">\
-                Helping individuals, families, and businesses send parcels with confidence.\
-              </p>\
-            </div>\
-            <div className="rounded-3xl border bg-slate-50 p-6">\
-              <h4 className="text-lg font-bold text-blue-900">Reliable Process</h4>\
-              <p className="mt-3 text-slate-600">\
-                Easy inquiry, quick pickup coordination, and practical shipment guidance.\
-              </p>\
-            </div>\
-          </div>\
-        </div>\
-      </section>\
-\
-      <section id="about" className="bg-slate-50 py-20">\
-        <div className="mx-auto max-w-7xl px-6">\
-          <div className="max-w-3xl">\
-            <h2 className="text-3xl font-extrabold text-blue-950">About MRA Courier</h2>\
-            <p className="mt-4 text-lg text-slate-600">\
-              MRA Courier is built to provide dependable domestic and international courier support with a simple,\
-              customer-first approach.\
-            </p>\
-          </div>\
-        </div>\
-      </section>\
-\
-      <section id="services" className="bg-white py-20">\
-        <div className="mx-auto max-w-7xl px-6">\
-          <div className="mb-12 text-center">\
-            <h2 className="text-3xl font-extrabold text-blue-950">Our Services</h2>\
-            <p className="mt-3 text-slate-600">Practical shipping support for personal and business needs.</p>\
-          </div>\
-\
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">\
-            \{services.map(([Icon, title, desc]) => (\
-              <div key=\{title\} className="rounded-3xl border bg-slate-50 p-6 shadow-sm">\
-                <div className="mb-4 inline-flex rounded-2xl bg-blue-100 p-3 text-blue-900">\
-                  <Icon size=\{22\} />\
-                </div>\
-                <h3 className="text-xl font-bold text-blue-950">\{title\}</h3>\
-                <p className="mt-3 text-slate-600">\{desc\}</p>\
-              </div>\
-            ))\}\
-          </div>\
-        </div>\
-      </section>\
-\
-      <section id="why-us" className="bg-slate-50 py-20">\
-        <div className="mx-auto max-w-7xl px-6">\
-          <div className="mb-12 text-center">\
-            <h2 className="text-3xl font-extrabold text-blue-950">Why Choose MRA Courier</h2>\
-          </div>\
-\
-          <div className="grid gap-6 md:grid-cols-3">\
-            \{[\
-              [Package, "Safe Handling", "Careful support for documents and parcels."],\
-              [ShieldCheck, "Reliable Support", "Helpful communication and booking assistance."],\
-              [Clock3, "Quick Coordination", "Simple booking and practical shipment guidance."],\
-            ].map(([Icon, title, desc]) => (\
-              <div key=\{title\} className="rounded-3xl border bg-white p-6">\
-                <div className="mb-4 inline-flex rounded-2xl bg-blue-100 p-3 text-blue-900">\
-                  \{React.createElement(Icon as React.ElementType, \{ size: 22 \})\}\
-                </div>\
-                <h3 className="text-xl font-bold text-blue-950">\{title\}</h3>\
-                <p className="mt-3 text-slate-600">\{desc\}</p>\
-              </div>\
-            ))\}\
-          </div>\
-        </div>\
-      </section>\
-\
-      <section id="faq" className="bg-white py-20">\
-        <div className="mx-auto max-w-5xl px-6">\
-          <div className="mb-12 text-center">\
-            <h2 className="text-3xl font-extrabold text-blue-950">Frequently Asked Questions</h2>\
-          </div>\
-\
-          <div className="space-y-4">\
-            \{faqs.map(([q, a]) => (\
-              <div key=\{q\} className="rounded-3xl border p-6">\
-                <h3 className="text-lg font-bold text-blue-950">\{q\}</h3>\
-                <p className="mt-2 text-slate-600">\{a\}</p>\
-              </div>\
-            ))\}\
-          </div>\
-        </div>\
-      </section>\
-\
-      <section id="contact" className="bg-slate-50 py-20">\
-        <div className="mx-auto max-w-7xl px-6">\
-          <div className="grid gap-8 md:grid-cols-2">\
-            <div className="rounded-3xl border bg-white p-8">\
-              <h2 className="text-3xl font-extrabold text-blue-950">Contact Us</h2>\
-\
-              <div className="mt-6 space-y-4 text-slate-700">\
-                <div className="flex items-start gap-3">\
-                  <Phone className="mt-1 text-blue-900" size=\{18\} />\
-                  <span>\{businessPhone\}</span>\
-                </div>\
-                <div className="flex items-start gap-3">\
-                  <Mail className="mt-1 text-blue-900" size=\{18\} />\
-                  <span>\{businessEmail\}</span>\
-                </div>\
-                <div className="flex items-start gap-3">\
-                  <Globe className="mt-1 text-blue-900" size=\{18\} />\
-                  <span>\{website\}</span>\
-                </div>\
-                <div className="flex items-start gap-3">\
-                  <MapPin className="mt-1 text-blue-900" size=\{18\} />\
-                  <span>\{address\}</span>\
-                </div>\
-              </div>\
-\
-              <div className="mt-8 flex flex-wrap gap-4">\
-                <a\
-                  href=\{whatsappUrl\}\
-                  target="_blank"\
-                  rel="noreferrer"\
-                  className="rounded-2xl bg-blue-900 px-6 py-3 font-semibold text-white"\
-                >\
-                  Book a Shipment\
-                </a>\
-                <a\
-                  href=\{mapsUrl\}\
-                  target="_blank"\
-                  rel="noreferrer"\
-                  className="rounded-2xl border px-6 py-3 font-semibold text-slate-800"\
-                >\
-                  Open Google Maps\
-                </a>\
-              </div>\
-            </div>\
-\
-            <div className="overflow-hidden rounded-3xl border bg-white p-3 shadow-sm">\
-              <div className="mb-3 rounded-2xl bg-slate-50 p-4 text-sm text-slate-600">\
-                If the map doesn\'92t show in preview, use <span className="font-semibold">Open Google Maps</span>.\
-                It will work normally after deployment.\
-              </div>\
-\
-              <iframe\
-                title="MRA Courier Location"\
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.640982179408!2d78.4019!3d17.2404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1sShamshabad%2C%20Hyderabad%2C%20Telangana%20501218!5e0!3m2!1sen!2sin!4v1760000000000!5m2!1sen!2sin"\
-                className="h-[420px] w-full rounded-2xl border-0"\
-                loading="lazy"\
-                referrerPolicy="no-referrer-when-downgrade"\
-                allowFullScreen\
-              />\
-            </div>\
-          </div>\
-        </div>\
-      </section>\
-\
-      <footer className="border-t bg-white py-10">\
-        <div className="mx-auto grid max-w-7xl gap-8 px-6 md:grid-cols-3">\
-          <div>\
-            <MRALogo compact />\
-            <p className="mt-3 text-slate-500 italic">From Origin. To Overseas.</p>\
-          </div>\
-\
-          <div>\
-            <h4 className="font-bold text-blue-950">Quick Links</h4>\
-            <div className="mt-3 flex flex-col gap-2 text-slate-600">\
-              <a href="#home">Home</a>\
-              <a href="#about">About</a>\
-              <a href="#services">Services</a>\
-              <a href="#faq">FAQ</a>\
-              <a href="#contact">Contact</a>\
-            </div>\
-          </div>\
-\
-          <div>\
-            <h4 className="font-bold text-blue-950">Contact</h4>\
-            <div className="mt-3 space-y-2 text-slate-600">\
-              <p>\{businessPhone\}</p>\
-              <p>\{businessEmail\}</p>\
-              <p>\{address\}</p>\
-            </div>\
-          </div>\
-        </div>\
-      </footer>\
-\
-      <a\
-        href=\{whatsappUrl\}\
-        target="_blank"\
-        rel="noreferrer"\
-        className="fixed bottom-6 right-6 inline-flex items-center gap-2 rounded-full bg-green-500 px-5 py-3 font-semibold text-white shadow-xl hover:scale-105"\
-      >\
-        <MessageCircle size=\{18\} /> WhatsApp\
-      </a>\
-    </div>\
-  );\
-\}}
+function MRAIcon({ dark = false, small = false }: { dark?: boolean; small?: boolean }) {
+  const size = small ? "h-10 w-10" : "h-16 w-16";
+  const iconSize = small ? 18 : 24;
+  const sendSize = small ? 12 : 15;
+
+  return (
+    <div
+      className={`relative flex ${size} items-center justify-center overflow-hidden rounded-full ${
+        dark ? "border border-white/15 bg-white/10" : "bg-gradient-to-br from-sky-500 to-blue-900"
+      } shadow-xl`}
+    >
+      <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.25),transparent_38%)]" />
+      <Box className="text-white" size={iconSize} strokeWidth={2.2} />
+      <div className="absolute right-[18%] top-[18%] text-white">
+        <Send size={sendSize} strokeWidth={2.7} />
+      </div>
+    </div>
+  );
+}
+
+function MRALogo({ dark = false, compact = false }: { dark?: boolean; compact?: boolean }) {
+  return (
+    <div className="flex items-center gap-3">
+      <MRAIcon dark={dark} small={compact} />
+      <div>
+        <div className={`flex items-center gap-2 ${dark ? "text-white" : "text-blue-950"}`}>
+          <span className={`${compact ? "text-2xl" : "text-4xl"} font-black leading-none`}>
+            MRA
+          </span>
+          <span
+            className={`rounded-full px-3 py-1 ${
+              compact ? "text-xs" : "text-sm"
+            } font-bold tracking-[0.18em] ${
+              dark ? "bg-white/15 text-white" : "bg-blue-100 text-blue-900"
+            }`}
+          >
+            COURIER
+          </span>
+        </div>
+        <p className={`${compact ? "text-[11px]" : "text-sm"} mt-2 ${dark ? "text-blue-100" : "text-slate-600"}`}>
+          Domestic & International Courier Services
+        </p>
+      </div>
+    </div>
+  );
+}
+
+export default function MRACourierHomePage() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    service: "",
+    message: "",
+  });
+
+  const businessPhone = "+91 741 678 0445";
+  const whatsappNumber = "917416780445";
+  const businessEmail = "mracourier@gmail.com";
+  const website = "mracourier.com";
+  const address = "Al Shukoor Colony, Shamshabad, Hyderabad, Telangana 501218";
+  const mapsUrl = "https://maps.google.com/?q=Al+Shukoor+Colony+Shamshabad+Hyderabad+501218";
+
+  const whatsappMessage = useMemo(() => {
+    return encodeURIComponent(`Hello MRA Courier,
+
+Name: ${form.name || "-"}
+Phone: ${form.phone || "-"}
+Service: ${form.service || "-"}
+Message: ${form.message || "-"}
+
+I would like to book a shipment.`);
+  }, [form]);
+
+  const whatsappUrl = useMemo(() => {
+    return `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+  }, [whatsappMessage, whatsappNumber]);
+
+  const services = [
+    [Truck, "Domestic Courier", "Quick and secure delivery across India."],
+    [Plane, "International Courier", "Ship documents and parcels overseas with ease."],
+    [Clock3, "Free Pickup", "Convenient pickup support for your shipments."],
+    [Box, "Packing Support", "Proper packaging assistance for safer transit."],
+  ] as const;
+
+  const trackingOptions = [
+    ["FedEx", "Track FedEx shipments and delivery status.", "https://www.fedex.com/fedextrack/"],
+    ["DTDC Australia", "Check DTDC Australia consignment updates.", "https://www.dtdcaustralia.com.au/track"],
+    ["Aramex", "Follow Aramex parcels across local and global routes.", "https://www.aramex.com/track"],
+    ["UPS", "Track UPS packages by tracking number.", "https://www.ups.com/track"],
+    ["DHL", "Track DHL Express and parcel shipments.", "https://www.dhl.com/global-en/home/tracking.html"],
+  ] as const;
+
+  const navItems = [
+    ["Home", "#home"],
+    ["About", "#about"],
+    ["Services", "#services"],
+    ["Tracking", "#tracking"],
+    ["FAQ", "#faq"],
+    ["Contact", "#contact"],
+  ] as const;
+
+  return (
+    <div className="min-h-screen bg-white text-slate-900">
+      <header className="sticky top-0 z-50 border-b bg-white/95 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+          <MRALogo compact />
+
+          <nav className="hidden gap-6 text-sm font-medium md:flex">
+            {navItems.map(([label, href]) => (
+              <a key={label} href={href} className="hover:text-blue-700">
+                {label}
+              </a>
+            ))}
+          </nav>
+
+          <a
+            href="#booking"
+            className="hidden rounded-2xl bg-blue-900 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-800 md:inline-flex"
+          >
+            Book Shipment
+          </a>
+
+          <button
+            className="rounded-xl p-2 text-blue-950 md:hidden"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X /> : <Menu />}
+          </button>
+        </div>
+
+        {mobileMenuOpen && (
+          <div className="border-t bg-white px-6 py-4 md:hidden">
+            <div className="flex flex-col gap-4 text-sm font-medium">
+              {navItems.map(([label, href]) => (
+                <a key={label} href={href} onClick={() => setMobileMenuOpen(false)}>
+                  {label}
+                </a>
+              ))}
+              <a
+                href="#booking"
+                onClick={() => setMobileMenuOpen(false)}
+                className="rounded-2xl bg-blue-900 px-5 py-3 text-center text-white"
+              >
+                Book Shipment
+              </a>
+            </div>
+          </div>
+        )}
+      </header>
+
+      <section id="home" className="bg-gradient-to-br from-blue-950 via-blue-900 to-blue-700 text-white">
+        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:grid-cols-[1.1fr_0.9fr] md:items-center">
+          <div>
+            <div className="mb-5">
+              <MRALogo dark />
+            </div>
+
+            <p className="mb-3 inline-block rounded-full border border-white/20 bg-white/10 px-4 py-1 text-sm">
+              Trusted Courier Partner in Hyderabad
+            </p>
+
+            <h1 className="mt-4 text-4xl font-extrabold leading-tight md:text-5xl">
+              Fast, Reliable Domestic & International Courier Solutions
+            </h1>
+
+            <p className="mt-5 max-w-xl text-lg text-blue-100">
+              From important documents to parcels, MRA Courier helps you ship confidently with pickup options,
+              customer-friendly support, and quick tracking access.
+            </p>
+
+            <div className="mt-8 flex flex-wrap gap-4">
+              <a
+                href="#booking"
+                className="inline-flex items-center gap-2 rounded-2xl bg-white px-8 py-3 font-semibold text-blue-900 shadow-lg hover:bg-blue-50"
+              >
+                Book Shipment <ArrowRight size={18} />
+              </a>
+              <a
+                href="#tracking"
+                className="inline-flex items-center gap-2 rounded-2xl border border-white/25 px-8 py-3 font-semibold text-white hover:bg-white/10"
+              >
+                Track Package <Search size={18} />
+              </a>
+            </div>
+          </div>
+
+          <div className="grid gap-4 rounded-3xl border border-white/10 bg-white/10 p-8 shadow-2xl backdrop-blur">
+            <div className="rounded-2xl bg-white/10 p-5">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-100">Courier desk</p>
+              <h2 className="mt-3 text-3xl font-bold">Ship, track, and coordinate from one place.</h2>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="rounded-2xl bg-white p-5 text-blue-950">
+                <Package className="mb-4" size={24} />
+                <p className="font-bold">Domestic and international</p>
+              </div>
+              <div className="rounded-2xl bg-white p-5 text-blue-950">
+                <MessageCircle className="mb-4" size={24} />
+                <p className="font-bold">WhatsApp booking support</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b bg-white py-14">
+        <div className="mx-auto grid max-w-7xl gap-6 px-6 md:grid-cols-3">
+          {[
+            ["Company Profile", "A dependable courier brand focused on local convenience and international reach."],
+            ["Business Support", "Helping individuals, families, and businesses send parcels with confidence."],
+            ["Reliable Process", "Easy inquiry, quick pickup coordination, and practical shipment guidance."],
+          ].map(([title, text]) => (
+            <div key={title} className="rounded-3xl border bg-slate-50 p-6">
+              <h3 className="text-lg font-bold text-blue-900">{title}</h3>
+              <p className="mt-3 text-slate-600">{text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="about" className="bg-slate-50 py-20">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="max-w-3xl">
+            <h2 className="text-3xl font-extrabold text-blue-950">About MRA Courier</h2>
+            <p className="mt-4 text-lg text-slate-600">
+              MRA Courier provides dependable domestic and international courier support with a simple,
+              customer-first approach.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" className="bg-white py-20">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-12 text-center">
+            <h2 className="text-3xl font-extrabold text-blue-950">Our Services</h2>
+            <p className="mt-3 text-slate-600">Practical shipping support for personal and business needs.</p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {services.map(([Icon, title, desc]) => (
+              <div key={title} className="rounded-3xl border bg-slate-50 p-6 shadow-sm">
+                <div className="mb-4 inline-flex rounded-2xl bg-blue-100 p-3 text-blue-900">
+                  <Icon size={22} />
+                </div>
+                <h3 className="text-xl font-bold text-blue-950">{title}</h3>
+                <p className="mt-3 text-slate-600">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="tracking" className="bg-slate-50 py-20">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+            <div>
+              <h2 className="text-3xl font-extrabold text-blue-950">Track Your Shipment</h2>
+              <p className="mt-3 max-w-2xl text-slate-600">
+                Open the official tracking page for the courier handling your parcel.
+              </p>
+            </div>
+            <a
+              href="#booking"
+              className="inline-flex w-fit items-center gap-2 rounded-2xl bg-blue-900 px-5 py-3 font-semibold text-white hover:bg-blue-800"
+            >
+              Need help tracking? <MessageCircle size={18} />
+            </a>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+            {trackingOptions.map(([carrier, description, url]) => (
+              <a
+                key={carrier}
+                href={url}
+                target="_blank"
+                rel="noreferrer"
+                className="group rounded-3xl border bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
+              >
+                <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-100 text-blue-900">
+                  <Search size={20} />
+                </div>
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="font-bold text-blue-950">{carrier}</h3>
+                  <ExternalLink className="text-slate-400 group-hover:text-blue-800" size={17} />
+                </div>
+                <p className="mt-3 text-sm leading-6 text-slate-600">{description}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="booking" className="bg-blue-950 py-20 text-white">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 md:grid-cols-[0.85fr_1.15fr] md:items-start">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-200">Book your shipment</p>
+            <h2 className="mt-3 text-3xl font-extrabold">Share your details and continue on WhatsApp.</h2>
+            <p className="mt-4 text-blue-100">
+              This booking area has moved out of the top tab area so visitors can choose between booking,
+              tracking, and contact options more clearly.
+            </p>
+          </div>
+
+          <div className="rounded-3xl border border-white/10 bg-white/10 p-6 shadow-2xl">
+            <div className="grid gap-4">
+              <input
+                value={form.name}
+                onChange={(event) => setForm({ ...form, name: event.target.value })}
+                placeholder="Your Name"
+                className="rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-white outline-none placeholder:text-blue-100"
+              />
+              <input
+                value={form.phone}
+                onChange={(event) => setForm({ ...form, phone: event.target.value })}
+                placeholder="Phone Number"
+                className="rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-white outline-none placeholder:text-blue-100"
+              />
+              <input
+                value={form.service}
+                onChange={(event) => setForm({ ...form, service: event.target.value })}
+                placeholder="Service Needed"
+                className="rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-white outline-none placeholder:text-blue-100"
+              />
+              <textarea
+                value={form.message}
+                onChange={(event) => setForm({ ...form, message: event.target.value })}
+                placeholder="Message"
+                rows={4}
+                className="rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-white outline-none placeholder:text-blue-100"
+              />
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-6 py-3 font-semibold text-blue-900 hover:bg-blue-50"
+              >
+                <MessageCircle size={18} /> Send via WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" className="bg-white py-20">
+        <div className="mx-auto max-w-5xl px-6">
+          <div className="mb-12 text-center">
+            <h2 className="text-3xl font-extrabold text-blue-950">Frequently Asked Questions</h2>
+          </div>
+
+          <div className="space-y-4">
+            {[
+              ["Do you provide international courier?", "Yes, we support international parcel and document shipping assistance."],
+              ["Do you offer pickup?", "Yes, free pickup is available depending on shipment location and service requirements."],
+              ["Can I book through WhatsApp?", "Yes, you can contact MRA Courier directly on WhatsApp for booking and inquiry."],
+            ].map(([question, answer]) => (
+              <div key={question} className="rounded-3xl border p-6">
+                <h3 className="text-lg font-bold text-blue-950">{question}</h3>
+                <p className="mt-2 text-slate-600">{answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" className="bg-slate-50 py-20">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 md:grid-cols-2">
+          <div className="rounded-3xl border bg-white p-8">
+            <h2 className="text-3xl font-extrabold text-blue-950">Contact Us</h2>
+
+            <div className="mt-6 space-y-4 text-slate-700">
+              <div className="flex items-start gap-3">
+                <Phone className="mt-1 text-blue-900" size={18} />
+                <span>{businessPhone}</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <Mail className="mt-1 text-blue-900" size={18} />
+                <span>{businessEmail}</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <Globe className="mt-1 text-blue-900" size={18} />
+                <span>{website}</span>
+              </div>
+              <div className="flex items-start gap-3">
+                <MapPin className="mt-1 text-blue-900" size={18} />
+                <span>{address}</span>
+              </div>
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-4">
+              <a href="#booking" className="rounded-2xl bg-blue-900 px-6 py-3 font-semibold text-white">
+                Book a Shipment
+              </a>
+              <a
+                href={mapsUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-2xl border px-6 py-3 font-semibold text-slate-800"
+              >
+                Open Google Maps
+              </a>
+            </div>
+          </div>
+
+          <div className="overflow-hidden rounded-3xl border bg-white p-3 shadow-sm">
+            <div className="mb-3 rounded-2xl bg-slate-50 p-4 text-sm text-slate-600">
+              If the map does not show in preview, use <span className="font-semibold">Open Google Maps</span>.
+            </div>
+
+            <iframe
+              title="MRA Courier Location"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.640982179408!2d78.4019!3d17.2404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1sShamshabad%2C%20Hyderabad%2C%20Telangana%20501218!5e0!3m2!1sen!2sin!4v1760000000000!5m2!1sen!2sin"
+              className="h-[420px] w-full rounded-2xl border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      </section>
+
+      <footer className="border-t bg-white py-10">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 md:grid-cols-3">
+          <div>
+            <MRALogo compact />
+            <p className="mt-3 italic text-slate-500">From Origin. To Overseas.</p>
+          </div>
+
+          <div>
+            <h4 className="font-bold text-blue-950">Quick Links</h4>
+            <div className="mt-3 flex flex-col gap-2 text-slate-600">
+              {navItems.map(([label, href]) => (
+                <a key={label} href={href}>
+                  {label}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h4 className="font-bold text-blue-950">Contact</h4>
+            <div className="mt-3 space-y-2 text-slate-600">
+              <p>{businessPhone}</p>
+              <p>{businessEmail}</p>
+              <p>{address}</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <a
+        href={whatsappUrl}
+        target="_blank"
+        rel="noreferrer"
+        className="fixed bottom-6 right-6 inline-flex items-center gap-2 rounded-full bg-green-500 px-5 py-3 font-semibold text-white shadow-xl hover:scale-105"
+      >
+        <MessageCircle size={18} /> WhatsApp
+      </a>
+    </div>
+  );
+}
